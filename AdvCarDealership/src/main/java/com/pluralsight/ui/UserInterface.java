@@ -1,10 +1,12 @@
 package com.pluralsight.ui;
 
-import com.pluralsight.model.Dealership;
-import com.pluralsight.model.Vehicle;
+import com.pluralsight.model.*;
+import com.pluralsight.persistence.ContractDataManager;
 import com.pluralsight.persistence.DealershipFileManager;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -47,6 +49,7 @@ public class UserInterface {
                 case "7" -> processGetAllVehiclesRequest();
                 case "8" -> processAddVehicleRequest();
                 case "9" -> processRemoveVehicleRequest();
+                case "10" -> processSaleOrLease();
                 case "99" -> {
                     return;
                 }
@@ -167,6 +170,37 @@ public class UserInterface {
         }
     }
 
+    public void processSaleOrLease(){
+        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        String name = getStringInput("Customer Name",false);
+        String email = getStringInput("Customer Email",false);
+        Integer vin = getIntegerInput(0,null,"VIN",false);
+
+        Vehicle vehicle = dealership.getVehiclesByVin(vin).get(0);
+
+        String contractType = getStringInput("SALE Or LEASE?",false);
+
+        Contract contract;
+
+        if(contractType.equalsIgnoreCase("sale")){
+            boolean isFinanced = getBoolInput();
+            contract = new SalesContract(date,name,email,vehicle,isFinanced);
+            saveContract(contract);
+        }else if(contractType.equalsIgnoreCase("lease")){
+            contract = new LeaseContract(date,name,email,vehicle);
+            saveContract(contract);
+        }
+
+
+    }
+
+    private void saveContract(Contract contract){
+        if(confirmUserAction("New Contract")){
+            ContractDataManager contractDataManager = new ContractDataManager();
+            contractDataManager.saveContract(contract);
+        }
+    }
+
     /**
      * Initializes the dealership by loading data from the file.
      */
@@ -189,6 +223,7 @@ public class UserInterface {
         System.out.println("\t7 - List All Vehicles");
         System.out.println("\t8 - Add A Vehicle");
         System.out.println("\t9 - Remove A Vehicle");
+        System.out.println("\t10 - Sell/Lease A Vehicle");
         System.out.println("\t99 - Quit");
     }
 
@@ -329,6 +364,16 @@ public class UserInterface {
             }
         }
         return targetDouble;
+    }
+
+    private boolean getBoolInput(){
+        String input = "";
+
+        while(!input.equalsIgnoreCase("false") && !input.equalsIgnoreCase("true")){
+            System.out.println("Is this sale financed? (True/False)");
+            input = scanner.nextLine();
+        }
+        return input.equalsIgnoreCase("true");
     }
 
     /**

@@ -31,7 +31,7 @@ public class ContractDataManager {
     private String salesContractString(SalesContract salesContract){
         return "SALE|"+ salesContract.getContractDate()+"|"+ salesContract.getCustomerName()+"|"+
                 salesContract.getCustomerEmail()+"|"+getVehicleInfo(salesContract.getVehicleSold())+"|"+ salesContract.getSalesTax()+
-                "|"+ salesContract.getRecordingFee()+"|"+ salesContract.getTotalPrice()+"|"+ salesContract.isFinanced()+"|"+ salesContract.getMonthlyPayment();
+                "|"+ salesContract.getRecordingFee()+"|"+ salesContract.getProcessingFee()+"|"+salesContract.getTotalPrice()+"|"+ salesContract.isFinanced()+"|"+ salesContract.getMonthlyPayment();
     }
 
     private String leaseContractString(LeaseContract leaseContract){
