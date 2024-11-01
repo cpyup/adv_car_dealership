@@ -4,9 +4,9 @@ public class SalesContract extends Contract{
     private double salesTax;
     private double recordingFee;
     private double processingFee;
-    private boolean isFinanced;
+    private String isFinanced;
 
-    public SalesContract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold, boolean isFinanced) {
+    public SalesContract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold, String isFinanced) {
         super(contractDate, customerName, customerEmail,vehicleSold);
         this.salesTax = (getVehicleSold().price() / 100) * 5;
         this.recordingFee = 100;
@@ -38,11 +38,11 @@ public class SalesContract extends Contract{
         this.processingFee = processingFee;
     }
 
-    public boolean isFinanced() {
+    public String isFinanced() {
         return isFinanced;
     }
 
-    public void setFinanced(boolean financed) {
+    public void setFinanced(String financed) {
         isFinanced = financed;
     }
 
@@ -55,7 +55,7 @@ public class SalesContract extends Contract{
     public double getMonthlyPayment() {
         int numberOfPayments = 0;
         double interestRate = 0;
-        if (isFinanced) {
+        if (isFinanced.equalsIgnoreCase("yes")) {
             if (getVehicleSold().price() >= 10000) {
                 numberOfPayments = 48;
                 interestRate = 4.25 / 1200;

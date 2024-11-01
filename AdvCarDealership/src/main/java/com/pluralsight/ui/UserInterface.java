@@ -170,7 +170,7 @@ public class UserInterface {
         }
     }
 
-    public void processSaleOrLease(){
+    public void processSaleOrLease(){  // TODO: Implement error handling for getting these values
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String name = getStringInput("Customer Name",false);
         String email = getStringInput("Customer Email",false);
@@ -184,7 +184,7 @@ public class UserInterface {
 
         if(contractType.equalsIgnoreCase("sale")){
             boolean isFinanced = getBoolInput();
-            contract = new SalesContract(date,name,email,vehicle,isFinanced);
+            contract = new SalesContract(date,name,email,vehicle,isFinanced ? "Yes" : "No");
             saveContract(contract);
         }else if(contractType.equalsIgnoreCase("lease")){
             contract = new LeaseContract(date,name,email,vehicle);
@@ -194,7 +194,7 @@ public class UserInterface {
 
     }
 
-    private void saveContract(Contract contract){
+    private void saveContract(Contract contract){ // TODO: Remove vehicle from inventory on confirmation
         if(confirmUserAction("New Contract")){
             ContractDataManager contractDataManager = new ContractDataManager();
             contractDataManager.saveContract(contract);
@@ -366,14 +366,14 @@ public class UserInterface {
         return targetDouble;
     }
 
-    private boolean getBoolInput(){
+    private boolean getBoolInput(){  // TODO: bool values should display as YES/NO
         String input = "";
 
-        while(!input.equalsIgnoreCase("false") && !input.equalsIgnoreCase("true")){
-            System.out.println("Is this sale financed? (True/False)");
+        while(!input.equalsIgnoreCase("no") && !input.equalsIgnoreCase("yes")){
+            System.out.print("Is this sale financed? (Yes/No)");
             input = scanner.nextLine();
         }
-        return input.equalsIgnoreCase("true");
+        return input.equalsIgnoreCase("yes");
     }
 
     /**
