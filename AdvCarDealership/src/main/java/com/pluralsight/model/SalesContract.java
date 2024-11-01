@@ -14,6 +14,38 @@ public class SalesContract extends Contract{
         this.isFinanced = isFinanced;
     }
 
+    public double getSalesTax() {
+        return salesTax;
+    }
+
+    public void setSalesTax(double salesTax) {
+        this.salesTax = salesTax;
+    }
+
+    public double getRecordingFee() {
+        return recordingFee;
+    }
+
+    public void setRecordingFee(double recordingFee) {
+        this.recordingFee = recordingFee;
+    }
+
+    public double getProcessingFee() {
+        return processingFee;
+    }
+
+    public void setProcessingFee(double processingFee) {
+        this.processingFee = processingFee;
+    }
+
+    public boolean isFinanced() {
+        return isFinanced;
+    }
+
+    public void setFinanced(boolean financed) {
+        isFinanced = financed;
+    }
+
     @Override
     public double getTotalPrice() {
         return getVehicleSold().price() + salesTax + recordingFee + processingFee;
