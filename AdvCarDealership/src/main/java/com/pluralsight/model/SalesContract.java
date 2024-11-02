@@ -1,10 +1,10 @@
 package com.pluralsight.model;
 
 public class SalesContract extends Contract{
-    private double salesTax;
-    private double recordingFee;
-    private double processingFee;
-    private String isFinanced;
+    private final double salesTax;
+    private final double recordingFee;
+    private final double processingFee;
+    private final String isFinanced;
 
     public SalesContract(String contractDate, String customerName, String customerEmail, Vehicle vehicleSold, String isFinanced) {
         super(contractDate, customerName, customerEmail,vehicleSold);
@@ -18,34 +18,17 @@ public class SalesContract extends Contract{
         return salesTax;
     }
 
-    public void setSalesTax(double salesTax) {
-        this.salesTax = salesTax;
-    }
-
     public double getRecordingFee() {
         return recordingFee;
-    }
-
-    public void setRecordingFee(double recordingFee) {
-        this.recordingFee = recordingFee;
     }
 
     public double getProcessingFee() {
         return processingFee;
     }
 
-    public void setProcessingFee(double processingFee) {
-        this.processingFee = processingFee;
-    }
-
     public String isFinanced() {
         return isFinanced;
     }
-
-    public void setFinanced(String financed) {
-        isFinanced = financed;
-    }
-
     @Override
     public double getTotalPrice() {
         return getVehicleSold().price() + salesTax + recordingFee + processingFee;
@@ -53,8 +36,8 @@ public class SalesContract extends Contract{
 
     @Override
     public double getMonthlyPayment() {
-        int numberOfPayments = 0;
-        double interestRate = 0;
+        int numberOfPayments;
+        double interestRate;
         if (isFinanced.equalsIgnoreCase("yes")) {
             if (getVehicleSold().price() >= 10000) {
                 numberOfPayments = 48;

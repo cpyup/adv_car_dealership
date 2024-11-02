@@ -1,7 +1,7 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.model.*;
-import com.pluralsight.persistence.ContractDataManager;
+import com.pluralsight.persistence.ContractFileManager;
 import com.pluralsight.persistence.DealershipFileManager;
 
 import java.time.LocalDate;
@@ -174,7 +174,7 @@ public class UserInterface {
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String name = getStringInput("Customer Name",false);
         String email = getStringInput("Customer Email",false);
-        Integer vin = getIntegerInput(0,null,"VIN",false);
+        Integer vin = getIntegerInput(0,null,"VIN",false); // TODO: Do this first, validate it exists in inventory
 
         Vehicle vehicle = dealership.getVehiclesByVin(vin).get(0);
 
@@ -184,7 +184,7 @@ public class UserInterface {
 
         if(contractType.equalsIgnoreCase("sale")){
             boolean isFinanced = getBoolInput();
-            contract = new SalesContract(date,name,email,vehicle,isFinanced ? "Yes" : "No");
+            contract = new SalesContract(date,name,email,vehicle,isFinanced ? "YES" : "NO");
             saveContract(contract);
         }else if(contractType.equalsIgnoreCase("lease")){
             contract = new LeaseContract(date,name,email,vehicle);
@@ -196,8 +196,8 @@ public class UserInterface {
 
     private void saveContract(Contract contract){ // TODO: Remove vehicle from inventory on confirmation
         if(confirmUserAction("New Contract")){
-            ContractDataManager contractDataManager = new ContractDataManager();
-            contractDataManager.saveContract(contract);
+            ContractFileManager contractFileManager = new ContractFileManager();
+            contractFileManager.saveContract(contract);
         }
     }
 

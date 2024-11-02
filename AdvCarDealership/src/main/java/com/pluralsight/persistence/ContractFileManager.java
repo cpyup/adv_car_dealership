@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ContractDataManager {
+public class ContractFileManager extends FileManager{
     private static final String FILE_PATH = "contracts.csv";
 
     public void saveContract(Contract contract){
@@ -29,13 +29,13 @@ public class ContractDataManager {
     }
 
     private String salesContractString(SalesContract salesContract){
-        return "SALE|"+ salesContract.getContractDate()+"|"+ salesContract.getCustomerName()+"|"+
+        return "\nSALE|"+ salesContract.getContractDate()+"|"+ salesContract.getCustomerName()+"|"+
                 salesContract.getCustomerEmail()+"|"+getVehicleInfo(salesContract.getVehicleSold())+"|"+ salesContract.getSalesTax()+
                 "|"+ salesContract.getRecordingFee()+"|"+ salesContract.getProcessingFee()+"|"+salesContract.getTotalPrice()+"|"+ salesContract.isFinanced()+"|"+ salesContract.getMonthlyPayment();
     }
 
     private String leaseContractString(LeaseContract leaseContract){
-        return  "LEASE|"+ leaseContract.getContractDate()+"|"+ leaseContract.getCustomerName()+"|"+
+        return  "\nLEASE|"+ leaseContract.getContractDate()+"|"+ leaseContract.getCustomerName()+"|"+
                 leaseContract.getCustomerEmail()+"|"+getVehicleInfo(leaseContract.getVehicleSold())+"|"+leaseContract.getExpectedEndingValue()+
                 "|"+ leaseContract.getLeaseFee()+"|"+ leaseContract.getTotalPrice()+"|"+ leaseContract.getMonthlyPayment();
     }
