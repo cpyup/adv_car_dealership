@@ -50,6 +50,7 @@ public class UserInterface {
                 case "8" -> processAddVehicleRequest();
                 case "9" -> processRemoveVehicleRequest();
                 case "10" -> processSaleOrLease();
+                case "98" -> processAdminLogin();
                 case "99" -> {
                     return;
                 }
@@ -194,6 +195,11 @@ public class UserInterface {
 
     }
 
+    public void processAdminLogin(){
+        AdminUserInterface adminUserInterface = new AdminUserInterface();
+        adminUserInterface.display();
+    }
+
     private void saveContract(Contract contract){
         if(confirmUserAction("New Contract")){
             ContractFileManager contractFileManager = new ContractFileManager();
@@ -226,6 +232,7 @@ public class UserInterface {
         System.out.println("\t8 - Add A Vehicle");
         System.out.println("\t9 - Remove A Vehicle");
         System.out.println("\t10 - Sell/Lease A Vehicle");
+        System.out.println("\t98 - Administrator");
         System.out.println("\t99 - Quit");
     }
 

@@ -1,7 +1,6 @@
 package com.pluralsight.persistence;
 
 import com.pluralsight.model.Dealership;
-import com.pluralsight.model.Vehicle;
 
 import java.io.*;
 
