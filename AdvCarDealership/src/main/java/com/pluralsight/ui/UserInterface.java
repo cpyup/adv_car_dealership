@@ -143,7 +143,7 @@ public class UserInterface {
                 Vehicle vehicle = new Vehicle(vin,year,make,model,type,color,odometer,price);
                 if(confirmUserAction("Addition")){
                     dealership.addVehicle(vehicle);
-                    initiateSave();
+                    initiateSaveDealership();
                 }
             }else{
                 throw new RuntimeException();
@@ -165,7 +165,7 @@ public class UserInterface {
 
             if(confirmUserAction("Deletion")){
                 vehicles.forEach(vehicle -> dealership.removeVehicle(vehicle));
-                initiateSave();
+                initiateSaveDealership();
             }
         }
     }
@@ -194,10 +194,12 @@ public class UserInterface {
 
     }
 
-    private void saveContract(Contract contract){ // TODO: Remove vehicle from inventory on confirmation
+    private void saveContract(Contract contract){
         if(confirmUserAction("New Contract")){
             ContractFileManager contractFileManager = new ContractFileManager();
             contractFileManager.saveContract(contract);
+            dealership.removeVehicle(contract.getVehicleSold());
+            initiateSaveDealership();
         }
     }
 
@@ -265,7 +267,7 @@ public class UserInterface {
     /**
      * Saves the current state of the dealership to the file.
      */
-    private void initiateSave(){
+    private void initiateSaveDealership(){
         DealershipFileManager manager = new DealershipFileManager();
         manager.saveDealership(dealership);
         System.out.println("Data Successfully Updated.");
@@ -366,7 +368,7 @@ public class UserInterface {
         return targetDouble;
     }
 
-    private boolean getBoolInput(){  // TODO: bool values should display as YES/NO
+    private boolean getBoolInput(){
         String input = "";
 
         while(!input.equalsIgnoreCase("no") && !input.equalsIgnoreCase("yes")){

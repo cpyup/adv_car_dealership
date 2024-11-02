@@ -11,7 +11,7 @@ public abstract class FileManager {
      * @return a {@code Vehicle} object created from the parsed values,
      *         or {@code null} if a parsing error occurs.
      */
-    Vehicle parseVehicle(String[] values){ // TODO: Make this an abstract "FileManager"
+    Vehicle parseVehicle(String[] values){
         try{
             int vin = Integer.parseInt(values[0]);
             int year = Integer.parseInt(values[1]);
