@@ -212,7 +212,8 @@ public class StandardUserInterface extends UserInterface{
     /**
      * Initializes the dealership by loading data from the file.
      */
-    private void init(){
+    @Override
+    void init(){
         DealershipFileManager manager = new DealershipFileManager();
         dealership = manager.getDealership();
     }
@@ -220,7 +221,8 @@ public class StandardUserInterface extends UserInterface{
     /**
      * Outputs the main menu options to the console.
      */
-    private void outputMenu(){
+    @Override
+    void outputMenu(){
         System.out.println("Dealership Menu Options:");
         System.out.println("\t1 - Search By Price");
         System.out.println("\t2 - Search By Make/Model");

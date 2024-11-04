@@ -6,6 +6,8 @@ public abstract class UserInterface {
     static final Scanner scanner = new Scanner(System.in);
 
     public abstract void display();
+    abstract void outputMenu();
+    abstract void init();
 
     /**
      * Prompts the user for a string input and handles validation.
