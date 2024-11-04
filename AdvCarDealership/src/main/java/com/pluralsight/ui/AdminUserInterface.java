@@ -5,7 +5,7 @@ import com.pluralsight.persistence.ContractFileManager;
 
 import java.util.ArrayList;
 
-public class AdminUserInterface extends UserInterface{
+public class AdminUserInterface extends UserInterface {
     @Override
     public void display() {
 

@@ -1,6 +1,6 @@
 package com.pluralsight.main;
 
-import com.pluralsight.ui.UserInterface;
+import com.pluralsight.ui.StandardUserInterface;
 
 /**
  * The entry point of the application.
@@ -16,7 +16,7 @@ public class Program {
      * @param args Command-line arguments passed to the program (not used).
      */
     public static void main(String[] args) {
-        UserInterface userInterface = new UserInterface();
-        userInterface.display();
+        StandardUserInterface standardUserInterface = new StandardUserInterface();
+        standardUserInterface.display();
     }
 }

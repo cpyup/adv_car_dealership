@@ -74,5 +74,5 @@ public class ContractFileManager extends FileManager{
         return vehicle.vin()+"|"+ vehicle.year()+"|"+vehicle.make()+"|"+vehicle.model()+"|"+vehicle.vehicleType()+
                 "|"+vehicle.color()+"|"+vehicle.odometer()+"|"+vehicle.price();
     }
-    
+
 }
