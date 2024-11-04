@@ -26,12 +26,12 @@ public class ContractFileManager extends FileManager{
             while ((line = bufferedReader.readLine()) != null) {
                 String[] values = line.split("\\|");
 
-                if(values.length == 18){
-                    if(values[0].equalsIgnoreCase("sale")){
-                        contracts.add(parseSalesContract(values));
-                    }else if(values[0].equalsIgnoreCase("lease")){
-                        contracts.add(parseLeaseContract(values));
-                    }
+                if(values.length == 18 && values[0].equalsIgnoreCase("sale")){
+                    contracts.add(parseSalesContract(values));
+                }
+
+                if(values.length == 16 && values[0].equalsIgnoreCase("lease")){
+                    contracts.add(parseLeaseContract(values));
                 }
 
             }
@@ -41,8 +41,9 @@ public class ContractFileManager extends FileManager{
         }
     }
 
-    private LeaseContract parseLeaseContract(String[] values){  // TODO: THIS
-        return null;
+    private LeaseContract parseLeaseContract(String[] values){
+        String[] vehicleValues = {values[4],values[5],values[6],values[7],values[8],values[9],values[10],values[11]};
+        return new LeaseContract(values[1],values[2],values[3],parseVehicle(vehicleValues));
     }
 
     private SalesContract parseSalesContract(String[] values){
