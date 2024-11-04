@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class AdminUserInterface extends UserInterface {
     @Override
     public void display() {
+        attemptLogin();
+    }
+
+    private void outputMenu(){
 
     }
 
@@ -18,10 +22,11 @@ public class AdminUserInterface extends UserInterface {
     }
 
     private void attemptLogin(){
-
+        String password = getStringInput("Administrator Password To Continue",false);
+        validateLogin(password);
     }
 
-    private void validateLogin(){
+    private void validateLogin(String password){
 
     }
 }

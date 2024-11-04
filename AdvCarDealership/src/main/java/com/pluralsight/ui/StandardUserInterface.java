@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
 
 import static com.pluralsight.ui.ColorCodes.*;
 
@@ -25,7 +24,7 @@ import static com.pluralsight.ui.ColorCodes.*;
  */
 public class StandardUserInterface extends UserInterface{
     private Dealership dealership;
-    private static final Scanner scanner = new Scanner(System.in);  // move to abstract
+
 
     /**
      * Displays the main menu and processes user input until the user
@@ -289,28 +288,6 @@ public class StandardUserInterface extends UserInterface{
     private int getMaxYear(){
         LocalDateTime now = LocalDateTime.now();
         return now.getYear() + 1;
-    }
-
-    /**
-     * Prompts the user for a string input and handles validation.
-     *
-     * @param displayType the type of input to be displayed to the user
-     * @param isNullable  indicates if the input can be left blank
-     * @return the validated string input
-     */
-    private String getStringInput(String displayType, boolean isNullable){
-        String input = "";
-
-        while (input.isBlank()) {
-            System.out.printf("Enter The %s"+(isNullable ? " (or press enter to leave blank)":"")+": ",displayType);
-            try {
-                input = scanner.nextLine().trim();
-                if(isNullable)return input;
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a valid type.");
-            }
-        }
-        return input;
     }
 
     /**
