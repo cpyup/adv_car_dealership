@@ -171,31 +171,34 @@ public class StandardUserInterface extends UserInterface{
         }
     }
 
-    public void processSaleOrLease(){  // TODO: Implement error handling for getting these values
-        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-        String name = getStringInput("Customer Name",false);
-        String email = getStringInput("Customer Email",false);
-        Integer vin = getIntegerInput(0,null,"VIN",false); // TODO: Do this first, validate it exists in inventory
+    public void processSaleOrLease(){ 
+        Integer vin = getIntegerInput(0,null,"VIN",false);
+        if(vin == null)return;
 
-        Vehicle vehicle = dealership.getVehiclesByVin(vin).get(0);
+        try{
+            Vehicle vehicle = dealership.getVehiclesByVin(vin).get(0);
+            String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+            String name = getStringInput("Customer Name",false);
+            String email = getStringInput("Customer Email",false);
 
-        String contractType = getStringInput("SALE Or LEASE?",false);
+            String contractType = getStringInput("Contract Type (Sale Or Lease)",false);
 
-        Contract contract;
+            Contract contract;
 
-        if(contractType.equalsIgnoreCase("sale")){
-            boolean isFinanced = getBoolInput();
-            contract = new SalesContract(date,name,email,vehicle,isFinanced ? "YES" : "NO");
-            saveContract(contract);
-        }else if(contractType.equalsIgnoreCase("lease")){
-            contract = new LeaseContract(date,name,email,vehicle);
-            saveContract(contract);
+            if(contractType.equalsIgnoreCase("sale")){
+                boolean isFinanced = getBoolInput();
+                contract = new SalesContract(date,name,email,vehicle,isFinanced ? "YES" : "NO");
+                saveContract(contract);
+            }else if(contractType.equalsIgnoreCase("lease")){
+                contract = new LeaseContract(date,name,email,vehicle);
+                saveContract(contract);
+            }
+        }catch (Exception e) {
+            System.out.println("Invalid Vin");
         }
-
-
     }
 
-    public void processAdminLogin(){  // Maybe move to main?
+    public void processAdminLogin(){
         AdminUserInterface adminUserInterface = new AdminUserInterface();
         adminUserInterface.display();
     }
