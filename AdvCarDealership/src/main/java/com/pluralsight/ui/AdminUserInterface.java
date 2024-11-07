@@ -1,6 +1,8 @@
 package com.pluralsight.ui;
 
 import com.pluralsight.model.Contract;
+import com.pluralsight.model.LeaseContract;
+import com.pluralsight.model.SalesContract;
 import com.pluralsight.persistence.ContractFileManager;
 
 import java.util.ArrayList;
@@ -11,7 +13,13 @@ public class AdminUserInterface extends UserInterface {
     @Override
     public void display() {
         boolean loggedIn = validateLogin(attemptLogin());
-        init(); // TODO: Only run if login successful
+
+        if(loggedIn){
+            init();
+        }else{
+            System.out.println("Invalid Password");
+            return;
+        }
 
         while(loggedIn){
             outputMenu();
@@ -53,11 +61,19 @@ public class AdminUserInterface extends UserInterface {
     }
 
     private void displaySalesContracts(){
-
+        for(Contract contract : contracts){
+            if(contract instanceof SalesContract salesContract){
+                System.out.println(salesContract);
+            }
+        }
     }
 
     private void displayLeaseContracts(){
-
+        for(Contract contract : contracts){
+            if(contract instanceof LeaseContract leaseContract){
+                System.out.println(leaseContract);
+            }
+        }
     }
 
     private String attemptLogin(){

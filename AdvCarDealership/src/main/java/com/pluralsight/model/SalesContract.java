@@ -58,8 +58,8 @@ public class SalesContract extends Contract{
 
     @Override
     public String toString(){
-        return "\nType: Lease"+ customerString() + vehicleString() + "\nSales Tax: " + salesTax + "\nRecording Fee: " +
-                recordingFee + "Processing Fee: " + processingFee +
+        return "\nType: Sale"+ customerString() + vehicleString() + "\nSales Tax: " + salesTax + "\nRecording Fee: " +
+                recordingFee + "\nProcessing Fee: " + processingFee +
                 "\nTotal Price: " + getTotalPrice() + "\nMonthly Payment: " + getMonthlyPayment();
     }
 }
