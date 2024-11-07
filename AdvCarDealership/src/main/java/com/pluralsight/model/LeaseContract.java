@@ -32,4 +32,10 @@ public class LeaseContract extends Contract{
         monthlyPayment /= 100;
         return monthlyPayment;
     }
+
+    @Override
+    public String toString(){
+        return "\nType: Lease"+ customerString() + vehicleString() + "\nEnding: " + expectedEndingValue + "\nLease Fee: " + leaseFee +
+                "\nTotal Price: " + getTotalPrice() + "\nMonthly Payment: " + getMonthlyPayment();
+    }
 }

@@ -20,6 +20,7 @@ public abstract class Contract {
     public String getCustomerName() {
         return customerName;
     }
+
     public String getCustomerEmail() {
         return customerEmail;
     }
@@ -30,4 +31,14 @@ public abstract class Contract {
 
     public abstract double getTotalPrice();
     public abstract double getMonthlyPayment();
+
+    public String customerString(){
+        return "\nDate: "+getContractDate() + "\nCustomer: "+getCustomerName() + "\nEmail: "+getCustomerEmail();
+    }
+
+    public String vehicleString(){
+        return "\nVin: "+getVehicleSold().vin()+ "\nYear: " + getVehicleSold().year() + "\nMake: " + getVehicleSold().make()+
+                "\nModel: " + getVehicleSold().model()+ "\nType: " + getVehicleSold().vehicleType()+ "\nColor: " + getVehicleSold().color() +
+                "\nMileage: " + getVehicleSold().odometer()+ "\nPrice: " + getVehicleSold().price();
+    }
 }
