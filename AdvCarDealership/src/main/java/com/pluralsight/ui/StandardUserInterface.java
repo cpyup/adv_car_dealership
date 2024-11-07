@@ -171,7 +171,7 @@ public class StandardUserInterface extends UserInterface{
         }
     }
 
-    public void processSaleOrLease(){ 
+    public void processSaleOrLease(){
         Integer vin = getIntegerInput(0,null,"VIN",false);
         if(vin == null)return;
 

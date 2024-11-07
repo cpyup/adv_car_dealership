@@ -4,6 +4,7 @@ import com.pluralsight.model.Contract;
 import com.pluralsight.model.LeaseContract;
 import com.pluralsight.model.SalesContract;
 import com.pluralsight.persistence.ContractFileManager;
+import com.pluralsight.utility.LoginVerification;
 
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ public class AdminUserInterface extends UserInterface {
     private static final String ADMIN_PASSWORD = "password";
     @Override
     public void display() {
-        boolean loggedIn = validateLogin(attemptLogin());
+        boolean loggedIn = LoginVerification.verifyPassword(attemptLogin());
 
         if(loggedIn){
             init();
@@ -96,9 +97,5 @@ public class AdminUserInterface extends UserInterface {
 
     private String attemptLogin(){
         return getStringInput("Administrator Password To Continue",false);
-    }
-
-    private boolean validateLogin(String password){
-        return password.equals(ADMIN_PASSWORD);
     }
 }
