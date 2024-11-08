@@ -8,10 +8,6 @@ Inventory is stored in an external file, allowing for widespread usage of the ap
 
 The advanced version of this application now allows for processing sales or lease directly from the application. An added Adminstrator mode allows for viewing current contracts after confirming login.
 
-## User Stories
-
-
-
 ## Setup Instructions
 
 Instructions on how to set up and run the project using IntelliJ IDEA.
@@ -50,10 +46,6 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ### Error Handling
 
 ![Error Examples](https://github.com/cpyup/car_dealership/blob/main/screenshots/errors.png?raw=true)
-
-## Project Highlights
-
-
 
 ## Future Work
 

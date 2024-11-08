@@ -18,6 +18,7 @@ public class AdminUserInterface extends UserInterface {
             init();
         }else{
             System.out.println("Invalid Password");
+            confirmContinue();
             return;
         }
 
