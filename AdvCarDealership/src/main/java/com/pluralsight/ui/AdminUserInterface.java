@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class AdminUserInterface extends UserInterface {
     private ArrayList<Contract> contracts;
-    private static final String ADMIN_PASSWORD = "password";
     @Override
     public void display() {
         boolean loggedIn = LoginVerification.verifyPassword(attemptLogin());
