@@ -35,6 +35,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 - IntelliJ IDEA Community Edition 2022.3.2.0
 - Java Version 17
+- [jBCrypt](https://www.mindrot.org/projects/jBCrypt/) (handles password hashing)
 
 ## Display Examples
 
@@ -56,3 +57,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Future Work
 
+- Implementing vehicle options bonus.
+- Implement 'First Time Setup' for administrator menu (setup password)
+- Implement changing Adminstrator password from Adminstrator menu
+- Complete Javadoc for all classes
