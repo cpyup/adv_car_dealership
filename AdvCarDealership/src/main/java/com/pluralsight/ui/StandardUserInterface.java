@@ -381,16 +381,6 @@ public class StandardUserInterface extends UserInterface{
     }
 
     /**
-     * Prompts the user to press 'Enter' to continue.
-     * This method waits for the user to input a line, effectively pausing
-     * the program until the user acknowledges by pressing 'Enter'.
-     */
-    private void confirmContinue(){
-        System.out.print("Press 'Enter' To Continue");
-        scanner.nextLine();
-    }
-
-    /**
      * Formats a string representing the header for the vehicle display output.
      * @return table header string
      */

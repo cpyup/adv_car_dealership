@@ -30,4 +30,14 @@ public abstract class UserInterface {
         }
         return input;
     }
+
+    /**
+     * Prompts the user to press 'Enter' to continue.
+     * This method waits for the user to input a line, effectively pausing
+     * the program until the user acknowledges by pressing 'Enter'.
+     */
+    void confirmContinue(){
+        System.out.print("Press 'Enter' To Continue");
+        scanner.nextLine();
+    }
 }

@@ -54,7 +54,7 @@ public class AdminUserInterface extends UserInterface {
 
     private void displayAllContracts(){
         contracts.forEach(System.out::println);
-        System.out.println("\n");
+        confirmContinue();
     }
 
     private void displayRecentContracts(){
@@ -67,13 +67,13 @@ public class AdminUserInterface extends UserInterface {
                 for(int i =0; i < amount; i++){
                     System.out.println(contracts.get(i));
                 }
-                System.out.println("\n");
             }else{
                 System.out.println("Only "+contracts.size()+" Current Contracts");
             }
         }catch (Exception e){
             System.out.println("Input Error");
         }
+        confirmContinue();
     }
 
     private void displaySalesContracts(){
@@ -82,7 +82,7 @@ public class AdminUserInterface extends UserInterface {
                 System.out.println(salesContract);
             }
         }
-        System.out.println("\n");
+        confirmContinue();
     }
 
     private void displayLeaseContracts(){
@@ -91,10 +91,16 @@ public class AdminUserInterface extends UserInterface {
                 System.out.println(leaseContract);
             }
         }
-        System.out.println("\n");
+        confirmContinue();
     }
 
     private String attemptLogin(){
         return getStringInput("Administrator Password To Continue",false);
+    }
+
+    @Override
+    public void confirmContinue(){
+        System.out.println();
+        super.confirmContinue();
     }
 }
